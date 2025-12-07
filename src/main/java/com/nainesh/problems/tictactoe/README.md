@@ -107,3 +107,4 @@ public void handleMove(Game game, Player player, int r, int c) {
         }
     }
 ```
+- Strategy Pattern: Used to check the winning conditions, where all strategies are checked.
