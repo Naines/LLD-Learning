@@ -82,3 +82,28 @@ See `TicTacToeDemo.java` for a sample usage and simulation of the Tic Tac Toe ga
 - **Add GUI:** Build a graphical interface for the game.
 
 ---
+
+Design Patterns used:
+- Observer Pattern for Scores, and checking winner or state changes
+- State Pattern for dynamic state change and status of game change (from IN_PROGRESS to DRAW).
+```
+public void handleMove(Game game, Player player, int r, int c) {
+        if(game.getCurrPlayer()!=player)
+            throw new InvalidMoveException("Not your turn!");
+
+        game.getBoard().placeSymbol(r, c, player.getSymbol());
+
+        //check for state change - winner, draw
+        if(game.checkWinner(player)){
+            game.setWinner(player);
+            game.setStatus(player.getSymbol() == Symbol.X ? GameStatus.WINNER_X : GameStatus.WINNER_O);
+            game.setState(new WinnerState()); //change state here
+        }else if(game.getBoard().isFull()){
+            game.setState(new DrawState());
+            game.setStatus(GameStatus.DRAW);
+        }else{
+            //game is in progress, switch player
+            game.switchPlayer();
+        }
+    }
+```
