@@ -1,32 +1,31 @@
-# Parking Lot System (LLD)
+# Tic Tac Toe (LLD)
 
 ## Problem Statement
 
-Design and implement a Parking Lot Management System that supports parking and unparking of vehicles, parkingTicket generation, fee calculation, and management of multiple floors and spot types.
+Design and implement a Tic Tac Toe game that allows two players to play on a NxN board, alternating turns, and determines the winner or a draw.
 
 ---
 
 ## Requirements
 
-- **Multiple Floors:** The parking lot can have multiple floors.
-- **Parking Spots:** Each floor has multiple parking spots of different types (e.g., car, bike, truck).
-- **Vehicle Types:** Support for different vehicle types (see `vehicletype/`).
-- **Ticketing:** Generate a parkingTicket when a vehicle is parked.
-- **Unparking:** Allow vehicles to unpark and calculate the parking fee.
-- **Fee Calculation:** Support for different fee strategies (see `fee/`).
-- **Spot Allocation:** Allocate the nearest available spot of the correct type.
-- **Extensibility:** Easy to add new vehicle types, spot types, or fee strategies.
+- **Two Players:** The game is played between two players.
+- **Board:** The game uses a NxN board.
+- **Turns:** Players take turns to place their symbol (X or O) on the board.
+- **Win Condition:** The game detects when a player has won (three in a row, column, or diagonal).
+- **Draw Condition:** The game detects when the board is full and the game is a draw.
+- **Input Validation:** The game prevents moves to already occupied cells.
+- **Extensibility:** Easy to change the board size or add new features.
 
 ---
 
 ## Core Entities
 
-- **ParkingLot:** Main class managing the entire parking lot, floors, and overall operations.
-- **ParkingFloor:** Represents a single floor in the parking lot, manages its spots.
-- **ParkingSpot:** Represents an individual parking spot, knows its type and occupancy.
-- **Ticket:** Represents a parking parkingTicket issued when a vehicle is parked.
-- **VehicleType (in `vehicletype/`):** Enum or classes for different vehicle types.
-- **Fee Calculation (in `fee/`):** Classes for calculating parking fees based on duration and vehicle type.
+- **Game:** Manages the game flow, player turns, and game status.
+- **Board:** Represents the NxN grid and provides methods to update and check the board.
+- **Cell:** Represents a single cell on the board.
+- **Player:** Represents a player with a name and symbol.
+- **Symbol:** Enum for X and O.
+- **GameStatus:** Enum for IN_PROGRESS, DRAW, WIN.
 
 ---
 
@@ -34,71 +33,52 @@ Design and implement a Parking Lot Management System that supports parking and u
 
 ## UML Class Diagram
 
-![](../../../../uml-diagrams/class-diagrams/parkinglot-class-diagram.png)
+![](../../../../uml-diagrams/class-diagrams/tictactoe-class-diagram.png)
 
-### 1. ParkingLot
-- **Methods:**
-    - `parkVehicle(Vehicle vehicle)`
-    - `unparkVehicle(String ticketId)`
-    - `addFloor(ParkingFloor floor)`
-    - `getAvailableSpots()`
-- **Fields:** List of floors, mapping of tickets, etc.
+### 1. Game
+- **Fields:** Board board, Player[] players, int currentPlayerIndex, GameStatus status
+- **Methods:** play(), makeMove(int row, int col), checkWin(), checkDraw(), switchPlayer(), getCurrentPlayer()
 
-### 2. ParkingFloor
-- **Methods:**
-    - `getAvailableSpot(VehicleType type)`
-    - `parkVehicle(Vehicle vehicle)`
-    - `unparkVehicle(String spotId)`
-- **Fields:** List of spots, floor number.
+### 2. Board
+- **Fields:** Cell[][] grid, int size
+- **Methods:** isCellEmpty(int row, int col), setCell(int row, int col, Symbol), printBoard(), isFull(), checkWin(Symbol)
 
-### 3. ParkingSpot
-- **Methods:**
-    - `isAvailable()`
-    - `assignVehicle(Vehicle vehicle)`
-    - `removeVehicle()`
-- **Fields:** Spot ID, type, current vehicle.
+### 3. Cell
+- **Fields:** int row, int col, Symbol symbol
+- **Methods:** getSymbol(), setSymbol(Symbol)
 
-### 4. Ticket
-- **Fields:** Ticket ID, vehicle info, entry time, spot info.
+### 4. Player
+- **Fields:** String name, Symbol symbol
 
-### 5. VehicleType (in `vehicletype/`)
-- Enum or classes for vehicle types (Car, Bike, Truck, etc.)
+### 5. Symbol (enum)
+- Values: X, O
 
-### 6. Fee Calculation (in `fee/`)
-- **Methods:** `calculateFee(Ticket parkingTicket, Date exitTime)`
-- **Extensible:** Add new strategies for fee calculation.
-
----
-
-## Design Patterns Used
-
-- **Strategy Pattern:** For fee calculation strategies.
-- **Factory Pattern:** (If used) For creating vehicles or spots.
-- **Singleton Pattern:** (If used) For ParkingLot instance.
+### 6. GameStatus (enum)
+- Values: IN_PROGRESS, DRAW, WIN
 
 ---
 
 ## Example Usage
 
 ```java
-ParkingLot lot = new ParkingLot();
-lot.addFloor(new ParkingFloor(...));
-Ticket parkingTicket = lot.parkVehicle(new Car("KA-01-1234"));
-lot.unparkVehicle(parkingTicket.getId());
+Player p1 = new Player("Alice", Symbol.X);
+Player p2 = new Player("Bob", Symbol.O);
+Game game = new Game(p1, p2);
+game.play();
 ```
 
 ---
 
 ## Demo
 
-See `ParkingLotDemo.java` for a sample usage of the parking lot system.
+See `TicTacToeDemo.java` for a sample usage and simulation of the Tic Tac Toe game.
 
 ---
 
-## Extending the Framework
+## Extending the Design
 
-- **Add a new vehicle type:** Update or add to `vehicletype/`.
-- **Add a new fee strategy:** Implement a new class in `fee/`.
-- **Add new spot types or floors:** Extend `ParkingSpot` or `ParkingFloor`.
+- **Change board size:** Update the `Board` class to support different sizes.
+- **Add AI player:** Implement a computer player for single-player mode.
+- **Add GUI:** Build a graphical interface for the game.
 
 ---
