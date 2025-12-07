@@ -86,7 +86,7 @@ See `TicTacToeDemo.java` for a sample usage and simulation of the Tic Tac Toe ga
 Design Patterns used:
 - Observer Pattern for Scores, and checking winner or state changes
 - State Pattern for dynamic state change and status of game change (from IN_PROGRESS to DRAW).
-```
+```java
 public void handleMove(Game game, Player player, int r, int c) {
         if(game.getCurrPlayer()!=player)
             throw new InvalidMoveException("Not your turn!");
