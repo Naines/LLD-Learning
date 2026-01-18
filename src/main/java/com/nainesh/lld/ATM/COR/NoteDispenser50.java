@@ -1,0 +1,7 @@
+package com.nainesh.lld.ATM.COR;
+
+public class NoteDispenser50 extends NoteDispenser{
+    public NoteDispenser50(int numNotes) {
+        super(50, numNotes);
+    }
+}
