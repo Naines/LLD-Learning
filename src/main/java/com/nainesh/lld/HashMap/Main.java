@@ -2,6 +2,33 @@ package com.nainesh.lld.HashMap;
 
 import java.util.LinkedList;
 
+/**create array of linkedlist.
+ * A HashMap uses an array of buckets.
+ * Each bucket stores a linked list (or in modern Java,
+ * sometimes a balanced tree for performance).
+ * Keys are mapped to buckets using a hash function.
+ *
+ * hashfunction - Converts a key into an integer index within the array.
+ * Example: index = hash(key) % capacity.
+ *
+ * collision handling:
+ * Different keys may hash to the same index.
+ * To handle this, each bucket is a linked list (or tree).
+ * New entries are appended to the list if a collision occurs.
+ *
+ * Load Factor:
+ * Ratio: size / capacity.
+ * Default in Java is 0.75.
+ * When exceeded, the HashMap rehashes (doubles capacity and redistributes entries).
+ * Balances memory usage and lookup performance. When load factor is exceeded,
+ * capacity is increased (usually doubled).
+ * All existing entries are rehashed into the new array.Expensive operation, but infrequent.
+ *
+ * 0.75:
+ * A lower load factor (e.g., 0.5) means the table resizes more often → fewer collisions but higher memory usage.
+ * A higher load factor (e.g., 0.9) means fewer resizes → better memory efficiency but more collisions, slowing down lookups.
+ * 0.75 was chosen empirically as the “sweet spot” where average performance remains close to O(1) while memory overhead is reasonable.
+ */
 class HashMap<K, V> {
     private class Entry<K, V> {
         K key;
