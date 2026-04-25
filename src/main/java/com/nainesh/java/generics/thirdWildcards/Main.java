@@ -6,6 +6,14 @@ import java.util.List;
 public class Main {
 
 
+    /**
+     * java: cannot find symbol
+     *   symbol:   class T
+     *   location: class com.nainesh.java.generics.thirdWildcards.Main
+     *
+     *   <T> required</T>
+     * @param array
+     */
     public static <T> void printList(T[] array) {
         for (T element : array) {
             System.out.println(element);
