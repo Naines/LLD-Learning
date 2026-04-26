@@ -7,21 +7,20 @@ import java.util.Properties;
 public class Main {
     public static void main(String[] args) {
         // Sender and recipient
-        String from = "kishan.auxano@gmail.com";
-        String to = "ngoel.main@gmail.com";
+        String from = "host@gmail.com";
+        String to = "noreply@gmail.com";
 
         // SMTP server details
-        String host = "smtp.gmail.com";
-//        String host = "localhost";
-        String username = "kishan.auxano@gmail.com";
-        String password = "czmfxscwkoiexikh";
+        String host = "localhost";
+        String username = "";
+        String password = "";
 
         // Set properties
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", host);
-        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.port", "25");
 
         // Get session
         Session session = Session.getInstance(props, new Authenticator() {
