@@ -317,134 +317,29 @@ Focus Areas:
 - Detect check, checkmate, stalemate.
 - Keep implementation modular.
 
-🔝 High Priority (Frequently Asked in LLD Interviews)
-Parking Lot – Classic OOD problem, tests entity modeling, slot allocation, and extensibility.
+---
 
-Elevator System – Tests scheduling, concurrency, and state management.
+## Snabbit-like On-demand Home Services
+Assumptions:
+- Users create short-duration home service requests such as cleaning, chores, or repairs.
+- Nearby available partners can be assigned to one active request at a time.
+- Ignore payments, ratings, and route optimization for simplicity.
 
-BookMyShow-like Ticket Booking – Seat allocation, concurrency, and validations.
+APIs:
+- String createServiceRequest(String userId, String serviceType, Location location)
+- boolean cancelServiceRequest(String requestId)
+- boolean completeServiceRequest(String requestId)
 
-Hotel Reservation System – Availability checks, locking, and booking flows.
+Focus Areas:
+- Match requests to available nearby partners.
+- Prevent assigning the same partner to multiple active requests.
+- Handle request cancellation, completion, and partner availability.
 
-Car Rental System – Similar to hotel booking, but with fleet management.
+---
 
-ATM System – Account operations, validations, concurrency.
+## Updated Priority List for LLD Interviews
 
-Task Management System – CRUD operations, deadlines, and state transitions.
-
-📈 Medium Priority (Common but slightly less “classic”)
-Splitwise-like Expense Sharing – Balance tracking, group modeling, fairness.
-
-Uber-like Ride Hailing – Matching algorithms, driver/rider states.
-
-Zomato-like Food Delivery – Order placement, restaurant menus, item availability.
-
-E-commerce System – Inventory management, order lifecycle.
-
-Online Library System – Borrow/return flows, availability checks.
-
-Notification Service – Pub-sub model, subscriptions, message delivery.
-
-📉 Lower Priority (Occasional, more specialized)
-Zerodha-like Trading Platform – Order matching, portfolio management (more niche).
-
-Logging Framework – Levels, filtering, extensibility.
-
-File System – Hierarchical structure, CRUD operations.
-
-✅ Why This Order?
-Parking Lot, Elevator, BookMyShow, Hotel Reservation, ATM → These are “canonical” LLD problems that interviewers love because they test modeling, concurrency, and extensibility.
-
-Splitwise, Uber, Zomato, E-commerce → Common real-world systems, but slightly less canonical.
-
-Zerodha, Logging, File System → Good practice, but less frequently asked unless the company is finance-heavy or systems-oriented.
-
-👉 If you’re preparing, I’d recommend mastering the top 7 first (Parking Lot, Elevator, BookMyShow, Hotel Reservation, Car Rental, ATM, Task Management). These cover most of the patterns interviewers want to see.
-
-Would you like me to also give you a study roadmap (e.g., which design patterns and concepts to focus on for each of these top-priority problems)?
-
-add the snakeand ladder, tictactoe and chess game as well
-Got it — let’s add Snake & Ladder, Tic Tac Toe, and Chess into the same style problem statements, and then I’ll update the priority list for LLD interviews including these game-based designs.
-
-🎲 Snake & Ladder
-Assumptions
-
-Board has fixed size (e.g., 100 cells).
-
-Snakes and ladders are predefined.
-
-Multiple players can play.
-
-Ignore advanced rules like dice variations.
-
-APIs
-
-void addPlayer(String playerId)
-
-String playTurn(String playerId) // rolls dice, moves player
-
-boolean hasWinner()
-
-Focus Areas
-
-Maintain player positions.
-
-Handle snakes and ladders correctly.
-
-Ensure fair dice rolls.
-
-Simple turn-based flow.
-
-❌⭕ Tic Tac Toe
-Assumptions
-
-3x3 board.
-
-Two players (X and O).
-
-Ignore AI opponent for now.
-
-APIs
-
-boolean makeMove(String playerId, int row, int col)
-
-String checkWinner()
-
-Focus Areas
-
-Validate moves (empty cell, correct turn).
-
-Detect winner or draw.
-
-Maintain board state.
-
-♟️ Chess Game
-Assumptions
-
-Standard 8x8 board.
-
-Two players (white and black).
-
-Ignore advanced rules like timers, AI.
-
-APIs
-
-boolean makeMove(String playerId, Move move)
-
-String checkGameStatus() // ongoing, checkmate, stalemate
-
-Focus Areas
-
-Validate legal moves per piece.
-
-Maintain board state.
-
-Detect check, checkmate, stalemate.
-
-Keep implementation modular.
-
-🔝 Updated Priority List for LLD Interviews
-## High Priority (Classic, frequently asked)
+### High Priority (Classic, frequently asked)
 - Parking Lot
 - Elevator System
 - BookMyShow Ticket Booking
@@ -456,15 +351,16 @@ Keep implementation modular.
 - Tic Tac Toe (simple but tests board state, validations)
 - Chess Game (complex, tests extensibility, rules engine)
 
-## Medium Priority
+### Medium Priority (Common but slightly less “classic”)
 - Splitwise Expense Sharing
 - Uber Ride Hailing
 - Zomato Food Delivery
 - E-commerce System
 - Online Library
 - Notification Service
+- Snabbit Processing System
 
-## Lower Priority
+### Lower Priority (Occasional, more specialized)
 - Zerodha Trading Platform
 - Logging Framework
 - File System

@@ -11,9 +11,11 @@ public class EmployeeMain {
                 new Employee("Keith",35, 4000.0,3924401),
                 new Employee("Zack",19, 4000.0,3924401)
             };
+
         Comparator<Employee> byName = Comparator.comparing(Employee::getName);
         Arrays.sort(employees, byName);
         print(employees);
+
         Comparator<Employee> byNameDesc = Comparator.comparing(
                 Employee::getName, (s1, s2) -> {
                     return s2.compareTo(s1);

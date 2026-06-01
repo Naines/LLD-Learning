@@ -1,4 +1,4 @@
-package com.nainesh.lld.RateLimiter;
+package com.nainesh.lld.RateLimiterBasic;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
