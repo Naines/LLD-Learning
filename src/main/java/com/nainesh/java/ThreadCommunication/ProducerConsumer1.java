@@ -57,7 +57,7 @@ public class ProducerConsumer1 {
     }
 
     static class Producer implements Runnable {
-        SharedBuffer buffer;
+        SharedBuffer buffer; //queue
         public Producer(SharedBuffer buffer){
             this.buffer = buffer;
         }
@@ -66,7 +66,7 @@ public class ProducerConsumer1 {
             int value = 1;
             while(true){
                 try{
-                    buffer.produce(value++);
+                    buffer.produce(value++); //add item to queue
                     Thread.sleep(1000);
                 }catch(Exception e){}
             }
@@ -82,7 +82,7 @@ public class ProducerConsumer1 {
         public void run(){
             while(true){
                 try{
-                    buffer.consume();
+                    buffer.consume(); //remove item from queue
 //                    Thread.sleep(2000);
                 }catch(Exception e){}
             }
