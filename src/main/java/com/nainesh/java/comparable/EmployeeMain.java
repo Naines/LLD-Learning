@@ -3,10 +3,42 @@ package com.nainesh.java.comparable;
 import java.util.Arrays;
 import java.util.Comparator;
 
+
+/**
+ *
+ *
+ *
+ * public static <T, U> Comparator<T> comparing(
+ *  @NotNull java.util.function.Function<? super T, ? extends U> keyExtractor,
+ *   @NotNull Comparator<? super U> keyComparator
+ * )
+ * keyExtractor – the function used to extract the sort key
+ * keyComparator – the Comparator used to compare the sort key
+ *
+ *
+ */
 public class EmployeeMain {
 
     public static void main(String[] args) {
-        Employee employees[] = new Employee[]{new Employee("John", 25,3000.0, 9922001),
+
+        //
+        int[][] arr = {
+                {3, 2},
+                {1, 5},
+                {2, 2},
+                {4, 1}
+        };
+
+        Arrays.sort(arr,
+                Comparator.comparingInt((int[] a) -> a[1]).reversed()
+                        .thenComparingInt(a -> a[0]));
+
+        for (int[] a : arr) {
+            System.out.println(Arrays.toString(a));
+        }
+
+        Employee employees[] = new Employee[]{
+                new Employee("John", 25,3000.0, 9922001),
                 new Employee("Ace", 22, 2000.0, 5924001),
                 new Employee("Keith",35, 4000.0,3924401),
                 new Employee("Zack",19, 4000.0,3924401)
@@ -19,7 +51,8 @@ public class EmployeeMain {
         Comparator<Employee> byNameDesc = Comparator.comparing(
                 Employee::getName, (s1, s2) -> {
                     return s2.compareTo(s1);
-                });
+                }
+        );
         Arrays.sort(employees, byNameDesc);
         print(employees);
         Arrays.sort(employees, byName.reversed());

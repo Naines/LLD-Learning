@@ -6,6 +6,6 @@ public class YellowLightState implements TrafficLightState{
     @Override
     public void changeLight(TrafficLight trafficLight) {
         System.out.println("Changing light to Green");
-        trafficLight.setTls(new GreenLightState());
+        trafficLight.setState(new GreenLightState());
     }
 }

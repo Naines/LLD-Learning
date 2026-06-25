@@ -3,16 +3,16 @@ package com.nainesh.lld.TrafficLight;
 import com.nainesh.lld.TrafficLight.state.TrafficLightState;
 
 public class TrafficLight {
-    TrafficLightState tls;
-    TrafficLight(TrafficLightState tls) {
-        this.tls = tls;
+    TrafficLightState state;
+    TrafficLight(TrafficLightState state) {
+        this.state = state;
     }
 
-    public void setTls(TrafficLightState tls) {
-        this.tls = tls;
+    public void setState(TrafficLightState state) {
+        this.state = state;
     }
 
     public void changeLight(){
-        tls.changeLight(this);
+        state.changeLight(this);
     }
 }
